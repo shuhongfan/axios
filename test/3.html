@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <button onclick="testGet()">GET请求</button>
+    <button onclick="testPost()">POST请求</button>
+    <button onclick="testPut()">PUT请求</button>
+    <button onclick="testDelete()">DELETE请求</button>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.js"></script>
+<script>
+    // 指定默认配置
+    axios.defaults.baseURL = 'http://localhost:3000';
+    function testGet() {
+        // axios.get('http://localhost:3000/posts')
+        // axios.get('http://localhost:3000/posts/1')
+        // axios.get('http://localhost:3000/posts?id=1')
+        axios({
+            url:'/posts',
+            params:{
+                id:1
+            }
+        })
+            .then(response=>{
+                console.log('/get',response.data)
+            })
+    }
+    function testPost() {
+        axios({
+            url:'/posts',
+            method:'POST',
+            data:{
+                "title": "json-server31111",
+                "author": "typicode3111"
+            }
+        })
+        // axios.post('/posts', {
+        //     "title": "json-server3",
+        //     "author": "typicode3"
+        // })
+        .then(response=>{
+            console.log('/post',response.data)
+        })
+    }
+    function testPut() {
+        axios({
+            url:'/posts/4',
+            method:'put',
+            data:{
+                "title": "json-server55...",
+                "author": "typicode55..."
+            }
+        })
+        // axios.put('/posts/4',
+        //     {
+        //         "title": "json-server3...",
+        //         "author": "typicode3..."
+        //     })
+            .then(response=>{
+                console.log('/put',response.data)
+            })
+    }
+    function testDelete() {
+        axios({
+            url:'/posts/3',
+            method:'delete'
+        })
+        // axios.delete('/posts/3')
+            .then(response=>{
+                console.log('/delete',response.data)
+            })
+    }
+</script>
+</body>
+</html>
